@@ -1,0 +1,69 @@
+/* src/components/IngredientList.css */
+.ingredient-list-container {
+    background-color: #f8f8f8;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+.recipe-list {
+    margin-top: 20px;
+}
+
+.recipe-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 10px; /* Space between items */
+}
+
+.recipe-name {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.recipe-actions {
+    display: flex;
+    justify-content: flex-start; /* Align to start horizontally */
+}
+
+.add-share-button {
+    background-color: #eee;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.recipe-details {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; /* Align items vertically */
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+.shopping-cart-icon {
+    font-size: 1.1em;
+}
+
+.ingredients-count {
+    color: #555;
+}
+
+.input-options {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.input-options div {
+    background-color: #f0f0f0;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+}
