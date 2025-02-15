@@ -1,0 +1,15 @@
+/* Ensure space between icons and text */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar .nav-link {
+    margin-left: 20px;
+  }
+  
+  /* Custom style for the icons */
+  .text-light {
+    color: white !important;
+  }
+  
