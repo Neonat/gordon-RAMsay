@@ -1,7 +1,11 @@
-import React from "react";
-import './IngresList.css'
+// src/components/IngredientList.js
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import './IngresList.css';
 
 function IngredientList({ recipes }) {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   // Check if recipes is an array and is not empty
   if (!Array.isArray(recipes) || recipes.length === 0) {
     return <p>No recipes to display.</p>;
@@ -26,11 +30,11 @@ function IngredientList({ recipes }) {
       </div>
 
       <div className="input-options">
-        <div className="manual-entry">✏️Manual Entry</div>
-        <div className="camera-mode">📷Camera mode</div>
+        <div className="manual-entry">Manual Entry</div>
+        <div className="camera-mode" onClick={() => navigate('/camera')}>Camera mode</div>
       </div>
     </div>
   );
-};
+}
 
 export default IngredientList;

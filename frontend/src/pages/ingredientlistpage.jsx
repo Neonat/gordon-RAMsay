@@ -1,6 +1,7 @@
 // src/pages/IngredientsPage.jsx
 import React from "react";
 import IngredientList from "../components/IngredientList/IngredientList.jsx"; // Import the IngredientList component
+import NewNavBar from '../components/NavBar/navbar.jsx'
 
 function IngredientsPage() {
   const recipes = [
@@ -10,7 +11,7 @@ function IngredientsPage() {
 
   return (
     <div>
-      <h1>Welcome to the Recipe App</h1>
+        <NewNavBar />
       <IngredientList recipes={recipes} /> {/* Pass the recipes prop */}
     </div>
   );
