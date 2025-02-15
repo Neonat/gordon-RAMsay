@@ -1,0 +1,83 @@
+/* src/components/IngredientList.css */
+.ingredient-list-container {
+    background-color: #fff8f0; /* Softer background */
+    padding: 20px;
+    font-family: 'Arial', sans-serif; /* A more modern font */
+    color: #333;
+  }
+  
+  .ingredient-list-container h1 {
+    color: #ff8c00; /* Orange color for the heading */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+  }
+  
+  .recipe-list {
+    margin-top: 20px;
+  }
+  
+  .recipe-item {
+    background-color: #fff;
+    border: 2px solid #ddd; /* Slight border */
+    border-radius: 20px; /* Increased rounded corners */
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .recipe-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px; /* Reduced space */
+  }
+  
+  .recipe-actions {
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    margin-top: 5px;
+  }
+  
+  .add-share-button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px; /* Increased rounded corners */
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  .recipe-details {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85em;
+    color: #777;
+  }
+  
+  .shopping-cart-icon {
+    font-size: 1em;
+  }
+  
+  .ingredients-count {
+    color: #666;
+  }
+  
+  .input-options {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .input-options div {
+    background-color: #f0f0f0;
+    border: 2px dashed #ccc; /* More visible dashed border */
+    border-radius: 20px; /* Increased rounded corners */
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 0.95em;
+  }
+  

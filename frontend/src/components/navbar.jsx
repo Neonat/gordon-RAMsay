@@ -1,35 +1,52 @@
-import React from 'react';
-import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import { Bell, Chat, PersonCircle } from 'react-bootstrap-icons'; // Icons from react-bootstrap-icons (optional)
+// In src/components/TextProcessor.jsx
+import React, { useState } from 'react';
+import { Container, Form, Button, InputGroup } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
-const MyNavbar = () => {
+const TextProcessor = () => {
+  const [inputText, setInputText] = useState('');
+  const [outputText, setOutputText] = useState('');
+
+  const handleChange = (event) => {
+    setInputText(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    const reversedText = inputText.split('').reverse().join('');
+    setOutputText(reversedText);
+  };
+
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Container>
-        {/* Right side Text */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
-            <Nav.Link href="#">Right Text Here</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
+    <Container className="mt-5">
+      <h2 className="text-center mb-4">Text Processor</h2>
+      <Form>
+        <InputGroup className="mb-3">
+          <Form.Control
+            type="text"
+            value={inputText}
+            onChange={handleChange}
+            placeholder="What would you like to eat today?"
+            aria-label="Text input"
+            aria-describedby="submit-button"
+          />
+          <Button
+            variant="primary"
+            id="submit-button"
+            onClick={handleSubmit}
+          >
+            ↑
+          </Button>
+        </InputGroup>
+      </Form>
 
-
-        {/* Left side with Icons */}
-        <Navbar.Brand>MyApp</Navbar.Brand>
-        <Nav className="ml-auto">
-          <Nav.Link href="#"><Bell size={24} className="text-light" /></Nav.Link>
-          <Nav.Link href="#"><Chat size={24} className="text-light" /></Nav.Link>
-          <NavDropdown title={<PersonCircle size={24} className="text-light" />} id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">Log out</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-
-
-      </Container>
-    </Navbar>
+      {outputText && (
+        <div className="mt-4">
+          <h4>Output:</h4>
+          <p className="output-area">{outputText}</p>
+        </div>
+      )}
+    </Container>
   );
 };
 
-export default MyNavbar;
+export default TextProcessor;
