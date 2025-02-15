@@ -1,6 +1,5 @@
 // src/components/IngredientList.js
 import React from "react";
-import "./IngredientList.css"; // Create this file
 
 function IngredientList({ recipes }) {
   // Check if recipes is an array and is not empty

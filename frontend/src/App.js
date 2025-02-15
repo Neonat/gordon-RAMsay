@@ -6,7 +6,7 @@ import Login from "./pages/login";
 import Form from "./pages/form";
 import Home from "./components/Home";
 import AccountCreate from "./pages/accountCreate"; // Import the new component
-import IngredientList from "./pages/IngredientList"; // Import this
+import IngredientList from "./components/IngredientList"; // Import this
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const recipesData = [
