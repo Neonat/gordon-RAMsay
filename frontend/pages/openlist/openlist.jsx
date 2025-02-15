@@ -5,8 +5,35 @@ import Checkbox from "./checkbox";
 import RateList from "./ratelist"; 
 import CategoryItem from "./CategoryItem";
 import IngredientItem from "./IngredientItem";
+import React, { useState } from 'react';
 
-const openlist = ({ name, quantity }) => {
+const App = () => {
+  // Step 1: Create state to toggle visibility of the small screen
+  const [showSmallScreen, setShowSmallScreen] = useState(false);
+
+  // Step 2: Handle the button click to toggle the small screen
+  const handleReplaceClick = () => {
+    setShowSmallScreen(!showSmallScreen);
+  };
+  return (
+    <div style={{ padding: '20px' }}>
+      <button onClick={handleReplaceClick}>
+        {showSmallScreen ? 'Hide Small Screen' : 'Show Small Screen'}
+      </button>
+
+      {/* Step 3: Conditionally render the small screen inside the same screen */}
+      <div style={styles.screenContainer}>
+        {showSmallScreen ? (
+          <SmallScreen />
+        ) : (
+          <OpenList/>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const OpenList = ({ name, quantity }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleToggle = () => {
@@ -38,4 +65,4 @@ const openlist = ({ name, quantity }) => {
   );
 };
 
-export default openlist;
+export default OpenList;
