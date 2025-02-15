@@ -4,6 +4,7 @@ import TextProcessor from './components/TextProcessor/TextProcessor.jsx';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import IngredientsPage from './pages/ingredientlistpage.jsx';
 import TextInputPage from './pages/textinputpage.jsx';
+import CameraPage from "./pages/CameraPage";
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
         <Route path="/" element={<IngredientsPage />} />
         {/* Add other routes here */}
         <Route path="/textinput" element={<TextInputPage />} />
-        <Route path="/camera" element={<CameraPage />}
+        <Route path="/camera" element={<CameraPage />}/>
       </Routes>
     </Router>
   );
