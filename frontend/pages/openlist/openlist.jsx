@@ -6,7 +6,7 @@ import RateList from "./ratelist";
 import CategoryItem from "./CategoryItem";
 import IngredientItem from "./IngredientItem";
 
-const OpenList = ({ name, quantity }) => {
+const openlist = ({ name, quantity }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleToggle = () => {
@@ -38,4 +38,4 @@ const OpenList = ({ name, quantity }) => {
   );
 };
 
-export default OpenList;
+export default openlist;

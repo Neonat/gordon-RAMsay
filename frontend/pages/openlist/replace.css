@@ -1,0 +1,24 @@
+
+const styles = {
+    screenContainer: {
+      marginTop: '20px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    largeScreen: {
+      width: '80%',
+      padding: '20px',
+      backgroundColor: '#f0f0f0',
+      textAlign: 'center',
+      borderRadius: '8px',
+    },
+    smallScreen: {
+      width: '50%',
+      padding: '20px',
+      backgroundColor: '#d3d3d3',
+      textAlign: 'center',
+      borderRadius: '8px',
+      border: '2px solid #ccc',
+    }
+  };
