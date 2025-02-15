@@ -1,14 +1,14 @@
-import styles from "./LeftScreen.module.css";
+import styles from "./ratelist.module.css";
 
-const LeftScreen = ({ isOpen, onClose }) => {
+const RateList = ({ isOpen, onClose }) => {
   return (
-    <div className={`${styles.leftScreen} ${isOpen ? styles.open : ""}`}>
+    <div className={`${styles.ratelist} ${isOpen ? styles.open : ""}`}>
       <button className={styles.closeButton} onClick={onClose}>✕</button>
-      <h2>Meal Review</h2>
+      <h2>How was your meal?</h2>
       <p>Rate your meal and explore ingredient substitutes!</p>
       {/* Add content here */}
     </div>
   );
 };
 
-export default LeftScreen;
+export default RateList;
