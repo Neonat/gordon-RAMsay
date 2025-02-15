@@ -32,6 +32,9 @@ function NewNavBar() {
               <NavDropdown.Item as={Link} to="/ingredients">
                 IngredientList
               </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/camera">
+              Camera
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

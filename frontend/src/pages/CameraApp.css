@@ -1,0 +1,60 @@
+/* src/components/CameraApp.css */
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #313131;
+    color: white;
+    padding: 20px;
+  }
+  
+  .Camera {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .Camera video {
+    display: block;
+    border-radius: 10px;
+  }
+  
+  .Camera button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .result {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin-top: 20px;
+  }
+  
+  .result canvas {
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .result button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .result.hasPhoto canvas {
+      border: 1px solid rgb(0, 119, 255);
+      z-index: 1000;
+      margin: 0;
+      box-shadow: black;
+  }

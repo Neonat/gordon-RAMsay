@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import AccountCreate from "./pages/accountCreate"; // Import the new component
 import IngredientList from "./components/IngredientList"; // Import this
 import "bootstrap/dist/css/bootstrap.min.css";
+import CameraApp from "./pages/CameraApp" //New webcam
 
 const recipesData = [
   { name: "For the kids, dinner", ingredientsCount: "0/16" },
@@ -29,6 +30,7 @@ function App() {
             path="/ingredients"
             element={<IngredientList recipes={recipesData} />}
           />
+          <Route path="/camera" element={<CameraApp/>}/> 
         </Routes>
       </div>
     </BrowserRouter>
