@@ -23,11 +23,13 @@ A smart kitchen copilot that helps you manage your fridge, generate recipes, and
    cd gordon-ramsay
 
 2. Install frontend dependencies:
+   ```sh
    cd frontend
    npm install
    npm start
 
-3. Install backend dependencies:
+4. Install backend dependencies:
+   ```sh
    cd backend
    pip install -r requirements.txt
    python app.py
