@@ -13,7 +13,7 @@ def upload_to_gemini(path, mime_type=None):
   See https://ai.google.dev/gemini-api/docs/prompting_with_media
   """
   file = genai.upload_file(path, mime_type=mime_type)
-  print(f"Uploaded file '{file.display_name}' as: {file.uri}")
+  # print(f"Uploaded file '{file.display_name}' as: {file.uri}")
   return file
 
 # Create the model
@@ -65,4 +65,3 @@ def img_detect_items(img_path):
     # Join the list back into a comma-separated string
     result_string = ",".join(sorted(unique_items))
     return result_string
-

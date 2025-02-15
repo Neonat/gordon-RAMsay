@@ -1,0 +1,15 @@
+.checkbox {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .checked {
+    color: green;
+    font-size: 20px;
+  }
+  
+  .unchecked {
+    color: gray;
+    font-size: 20px;
+  }
