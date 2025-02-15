@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import '../components/'
-
+import './TextProcessor.css'
 const TextProcessor = () => {
     // State to store input and output 
     const [inputText, setInputText] = useState('');
