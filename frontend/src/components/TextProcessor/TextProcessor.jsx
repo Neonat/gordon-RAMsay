@@ -1,4 +1,3 @@
-// In src/components/TextProcessor.jsx
 import React, { useState } from 'react';
 import { Container, Form, Button, InputGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
@@ -12,9 +11,31 @@ const TextProcessor = () => {
     setInputText(event.target.value);
   };
 
-  const handleSubmit = () => {
-    const reversedText = inputText.split('').reverse().join('');
-    setOutputText(reversedText);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // Send the user input to the Flask backend
+      const response = await fetch('http://localhost:5000/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message: inputText }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      // Parse the JSON response
+      const data = await response.json();
+
+      // Display the response in the frontend
+      setOutputText(data.response);
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      setOutputText('Error: Could not fetch the response.');
+    }
   };
 
   return (
@@ -44,7 +65,7 @@ const TextProcessor = () => {
       {outputText && (
         <div className="mt-4">
           <h4>Output:</h4>
-          <p className="output-area">{outputText}</p>
+          <pre className="output-area">{outputText}</pre>
         </div>
       )}
     </Container>
