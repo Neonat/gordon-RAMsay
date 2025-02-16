@@ -19,7 +19,7 @@ const TextProcessor = () => {
 
   return (
     <Container className="mt-5">
-      <h2 className="text-center mb-4">Text Processor</h2>
+      <h2 className="text-center mb-4">Hey! Feeling hungry?</h2>
       <Form>
         <InputGroup className="mb-3">
           <Form.Control

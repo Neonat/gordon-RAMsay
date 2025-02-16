@@ -37,9 +37,9 @@ function PhotoPreview({ photo, onClose }) {
   return (
     <div className="photo-preview">
       <img src={photo} alt="Captured preview" />
-      <button onClick={onClose}>Close</button>
+      <button onClick={onClose}>Retake?</button>
       <button onClick={sendPhotoToBackend} disabled={isSending}>
-        {isSending ? "Sending..." : "Send to Backend"}
+        {isSending ? "Sending..." : "Kowalski, Analysis!"}
       </button>
     </div>
   );

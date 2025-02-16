@@ -5,8 +5,8 @@ import NewNavBar from '../components/NavBar/navbar.jsx'
 
 function IngredientPage() {
   const recipes = [
-    { name: "Pasta", ingredientsCount: 5 },
-    { name: "Pizza", ingredientsCount: 8 },
+    { name: "Pasta", ingredientsCount: "5 / 8" },
+    { name: "Pizza", ingredientsCount: "8 / 8" },
   ];
 
   return (

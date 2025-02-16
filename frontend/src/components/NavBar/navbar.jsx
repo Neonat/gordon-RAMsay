@@ -8,10 +8,20 @@ const NewNavbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar expand="lg" style={{ backgroundColor: "#2E8B57" }}>
       <Container>
+        {/* Brand with logo */}
+        <Navbar.Brand href="/" style={{ color: "white", fontWeight: "bold", display: "flex", alignItems: "center" }}>
+      <img
+        src="frontend/assets/kitchencopiloticon.jpeg"  // Change this to your actual logo path
+        alt="Kitchen Copilot Logo"
+        width="40"  // Adjust the size as needed
+        height="40"
+        className="d-inline-block align-top"
+      />{" "}
+    </Navbar.Brand>
         {/* Brand on the left */}
-        <Navbar.Brand>MyApp</Navbar.Brand>
+        <Navbar.Brand>Kitchen Copilot</Navbar.Brand>
 
         {/* Toggle button for mobile (hamburger menu) */}
         <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -35,7 +45,7 @@ const NewNavbar = () => {
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
               <NavDropdown.Item as="button" onClick={() => navigate ("/textinput")}>Talk to RAMsay</NavDropdown.Item>
               <NavDropdown.Item as="button" onClick={() => navigate ("/ingredientspage")}>My List</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Log out</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.4">Log out</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
