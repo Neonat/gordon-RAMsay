@@ -2,10 +2,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from utils.imagerec import img_detect_items
 from utils.api_tool import get_recipe_instruction
-from ai import graph
+from ai import graph, process_user_input
 import json
 from spoonacular import SearchRecipes200ResponseResultsInner
 import os
+import subprocess
+
 
 app = Flask(__name__)
 CORS(app)
@@ -33,33 +35,58 @@ def get_fridge_items(image_path):
     items = img_detect_items()
     return {"items": items}
 
-@app.route('/chat', methods = ['POST'])
-def chat():
-    data = request.json
-    user_message = data.get("message")
 
-    if not user_message:
+@app.route('/chat', methods=['POST', 'GET'])
+def chat():
+    data = request.get_json()
+    user_input = data.get("message")
+
+    if not user_input:
         return jsonify({"error": "Message is required"}), 400
 
-    # Process the user message using LangChain
-    response = graph.invoke({"user_input": user_message})
-    print(response)
-    list_of_recipes = eval(response['api_info'][0].content)
-    
+    # Call the processing function from ai.py
+    response = process_user_input(user_input)
 
-    recipes = {}
-    for recipe in list_of_recipes:
-        recipe_id = recipe.id
-        recipes[recipe_id] = {'name': recipe.title, 'image': recipe.image, 'image_type': recipe.image_type}
+    return jsonify({"response": response})
 
-    return json.dumps(recipes)
 
-@app.route('/get-recipe-instructions/<int:id>', methods = ['GET'])
-def get_recipe_instructions(id):
-    steps = {}
-    
-    list_of_steps = get_recipe_instruction(id)[0].steps
-    for step in list_of_steps:
-        steps[f'Step {step.number}'] = step.step
-    
-    return json.dumps(steps)
+@app.route('/api/upload-photo', methods=['POST'])
+def upload_photo():
+    data = request.json
+    photo_data_url = data.get('photo')
+
+    if not photo_data_url:
+        return jsonify({"error": "No photo data provided"}), 400
+
+    # Save the base64 image to a temporary file
+    import base64
+    header, encoded = photo_data_url.split(",", 1)
+    binary_data = base64.b64decode(encoded)
+    temp_image_path = "temp_image.jpg"
+    with open(temp_image_path, "wb") as f:
+        f.write(binary_data)
+
+    # Call the Python script to process the image
+    try:
+        result = subprocess.run(
+            ["python3", "imagerec.py", temp_image_path],
+            capture_output=True,
+            text=True
+        )
+        if result.returncode != 0:
+            return jsonify({"error": "Failed to process image", "details": result.stderr}), 500
+
+        # Parse the output from the script
+        detected_items = result.stdout.strip()
+        return jsonify({"detected_items": detected_items})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        # Clean up the temporary file
+        if os.path.exists(temp_image_path):
+            os.remove(temp_image_path)
+
+if __name__ == '__main__':
+    app.run(debug=True)

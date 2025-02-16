@@ -38,5 +38,10 @@
       "last 1 safari version"
     ],
     "main": "src/index.jsx"
-  }
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
