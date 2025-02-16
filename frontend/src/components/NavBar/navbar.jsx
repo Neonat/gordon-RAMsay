@@ -1,9 +1,12 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { Bell, Chat, List } from 'react-bootstrap-icons'; // Icons from react-bootstrap-icons
-import './nav.css'; // Import custom CSS
+import { useNavigate } from "react-router-dom";
+import './nav.css'; // Import custom CSSimport { NavDropdown } from "react-bootstrap";
 
 const NewNavbar = () => {
+  const navigate = useNavigate();
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -30,7 +33,9 @@ const NewNavbar = () => {
               align="end" // Align dropdown to the right
             >
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Log out</NavDropdown.Item>
+              <NavDropdown.Item as="button" onClick={() => navigate ("/textinput")}>Talk to RAMsay</NavDropdown.Item>
+              <NavDropdown.Item as="button" onClick={() => navigate ("/ingredientspage")}>My List</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Log out</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

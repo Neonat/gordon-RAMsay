@@ -3,7 +3,7 @@ import React from "react";
 import IngredientList from "../components/IngredientList/IngredientList.jsx"; // Import the IngredientList component
 import NewNavBar from '../components/NavBar/navbar.jsx'
 
-function IngredientsPage() {
+function IngredientPage() {
   const recipes = [
     { name: "Pasta", ingredientsCount: 5 },
     { name: "Pizza", ingredientsCount: 8 },
@@ -13,8 +13,8 @@ function IngredientsPage() {
     <div>
         <NewNavBar />
       <IngredientList recipes={recipes} /> {/* Pass the recipes prop */}
-    </div>
+       </div>
   );
 }
 
-export default IngredientsPage;
+export default IngredientPage;
