@@ -1,64 +1,61 @@
-import React, { useRef, useEffect, useState } from "react";
-import "./camaccess.css";
+import React, { useRef, useEffect } from "react";
 
-function CameraApp() {
-  const videoRef = useRef(null);
-  const photoRef = useRef(null);
-  const [hasPhoto, setHasPhoto] = useState(false);
+function CameraAccess({ onCapture }) {
+  const videoRef = useRef(null); // Ref for the video element
 
+  // Access the camera and display the feed
   const getVideo = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         video: { width: 640, height: 480 }, // Or no constraints to let the browser choose
         audio: false,
       });
-      let video = videoRef.current;
-      video.srcObject = stream;
-      video.play();
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream; // Set the camera feed as the video source
+        await videoRef.current.play(); // Wait for the video to start playing
+      }
     } catch (err) {
       console.error("Error accessing camera:", err);
-      // Display a user-friendly message in the UI
-      alert("Please allow camera access to use this feature.");
+      alert("Please allow camera access to use this feature."); // User-friendly error message
     }
   };
 
+  // Clean up the video stream when the component unmounts
   useEffect(() => {
     getVideo();
-  }, []); // Run only once on mount
 
+    return () => {
+      if (videoRef.current && videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject;
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => track.stop()); // Stop all tracks in the stream
+      }
+    };
+  }, []); // Run only once on mount and clean up on unmount
+
+  // Capture a photo from the camera feed
   const takePhoto = () => {
     const video = videoRef.current;
-    const photo = photoRef.current;
+    if (video) {
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth || video.width;
+      canvas.height = video.videoHeight || video.height;
 
-    if (video && photo) {
-      const width = video.videoWidth || video.width; // Use videoWidth or video.width
-      const height = video.videoHeight || video.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-      photo.width = width;
-      photo.height = height;
-
-      const ctx = photo.getContext("2d");
-      ctx.drawImage(video, 0, 0, width, height);
-      setHasPhoto(true);
+      // Convert the canvas image to a base64 data URL
+      const photoDataUrl = canvas.toDataURL("image/png");
+      onCapture(photoDataUrl); // Call onCapture with the captured photo
     }
-  };
-
-  const closePhoto = () => {
-    setHasPhoto(false);
   };
 
   return (
-    <div className="App">
-      <div className="Camera">
-        <video ref={videoRef} width="640" height="480" autoPlay muted />
-        <button onClick={takePhoto}>Take Photo</button>
-      </div>
-      <div className={"result" + (hasPhoto ? " hasPhoto" : "")}>
-        <canvas ref={photoRef} width="640" height="480" />
-        {hasPhoto && <button onClick={closePhoto}>CLOSE!</button>}
-      </div>
+    <div className="camera-access">
+      <video ref={videoRef} width="640" height="480" autoPlay muted />
+      <button onClick={takePhoto}>Take Photo</button>
     </div>
   );
 }
 
-export default CameraApp;
+export default CameraAccess;

@@ -1,10 +1,10 @@
 import React from 'react';
-import MyNavbar from './components/NavBar/navbar.jsx';  // Now importing Navbar.jsx
-import TextProcessor from './components/TextProcessor/TextProcessor.jsx'; 
+import MyNavbar from './components/NavBar/navbar.jsx';  // Now importing Navbar.jsx //remove if not in use
+import TextProcessor from './components/TextProcessor/TextProcessor.jsx';  //remove if not in use
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import IngredientsPage from './pages/ingredientlistpage.jsx';
 import TextInputPage from './pages/textinputpage.jsx';
-
+import CameraPage from "./pages/camerapage.jsx";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/" element={<IngredientsPage />} />
         {/* Add other routes here */}
         <Route path="/textinput" element={<TextInputPage />} />
-        <Route path="/camera" element={<CameraPage />}
+        <Route path="/camera" element={<CameraPage />}/>
       </Routes>
     </Router>
   );
