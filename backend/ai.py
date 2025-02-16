@@ -11,7 +11,6 @@ load_dotenv()
 
 llm = ChatGoogleGenerativeAI(model='gemini-1.5-flash')
 
-
 class GraphState(TypedDict):
     user_input: Optional[str] = None
     profile: Optional[str] = None
@@ -19,20 +18,19 @@ class GraphState(TypedDict):
     ingredients: Optional[str] = None
     response: Optional[str] = None
 
-def decider_node(state):
-    user_input = state.get("user_input", "")
-
-
 def call_api_tool_node(state):
     user_input = state.get("user_input", "")
     profile = state.get("profile", "")
     ingredients = state.get("ingredients", "")
+
+    # Bind the API tool to the LLM
     llm_with_tools = llm.bind_tools([query_spoonacular_api])
 
+    # Prompt Template
     system_template = """You are part of a system that helps users decide which recipes to cook. 
                         Your job is to extract relevant information from a user's input to query an external api effectively.
-                        You are provided with a tool can allows you to query an api that will provide you with recipe options to provide the user with.
-                        The users input is enclosed by 4 hashtags.
+                        You are provided with a tool that allows you to query an api that will provide you with recipe options to provide the user with.
+                        The user's input is enclosed by 4 hashtags.
     """
     human_template = """
         ####{user_input}####
@@ -48,9 +46,9 @@ def call_api_tool_node(state):
     return {"api_info": [response]}
 
 def list_recipes_node(state):
-    user_input = state.get("user_input", "")
     api_result = state.get("api_info", "")
     
+    # Extract Recipe Names from API Response
     prompt = f"The retrieved recipes are shown in the list: {api_result}. Please provide the names of the recipes retrieved."
 
     chain = llm | StrOutputParser()
@@ -67,21 +65,11 @@ workflow.add_edge(START, "call_external_api")
 workflow.add_edge("call_external_api", "execute_api_tool")
 workflow.add_edge("execute_api_tool", "list_recipes")
 workflow.add_edge("list_recipes", END)
-'''
-    workflow.add_conditional_edges(
-        "check_math",
-        lambda state: state["response"],
-        {
-            "Yes": "call_calculator_agent",
-            "No": "advisor"
-        }
-    )
-'''
 
 graph = workflow.compile()
 
-'''
-result = app.invoke({"user_input": "I love indian food. Give me vegetarian recipes I can make"})
-
-print(result)
-'''
+# Function to handle user input and return response
+def process_user_input(user_input):
+    result = graph.invoke({"user_input": user_input})
+    response = result.get("response", "No response generated.")
+    return response
