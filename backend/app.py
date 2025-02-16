@@ -30,13 +30,8 @@ def upload_file():
 
     return jsonify({"message": "File uploaded successfully", "file_path": file_path})
 
-@app.route('/get-fridge-items', methods = ['GET', 'POST'])
-def get_fridge_items(image_path):
-    items = img_detect_items()
-    return {"items": items}
 
-
-@app.route('/chat', methods=['POST', 'GET'])
+@app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
     user_input = data.get("message")
@@ -48,7 +43,6 @@ def chat():
     response = process_user_input(user_input)
 
     return jsonify({"response": response})
-
 
 @app.route('/api/upload-photo', methods=['POST'])
 def upload_photo():
