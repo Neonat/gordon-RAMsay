@@ -5,9 +5,28 @@ from utils.api_tool import get_recipe_instruction
 from ai import graph
 import json
 from spoonacular import SearchRecipes200ResponseResultsInner
+import os
 
 app = Flask(__name__)
 CORS(app)
+
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Ensure upload folder exists
+
+@app.route("/upload", methods=["POST"])
+def upload_file():
+    if "image" not in request.files:
+        return jsonify({"error": "No file part"}), 400
+
+    file = request.files["image"]
+
+    if file.filename == "":
+        return jsonify({"error": "No selected file"}), 400
+
+    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+    file.save(file_path)
+
+    return jsonify({"message": "File uploaded successfully", "file_path": file_path})
 
 @app.route('/get-fridge-items', methods = ['GET', 'POST'])
 def get_fridge_items(image_path):
@@ -24,7 +43,9 @@ def chat():
 
     # Process the user message using LangChain
     response = graph.invoke({"user_input": user_message})
+    print(response)
     list_of_recipes = eval(response['api_info'][0].content)
+    
 
     recipes = {}
     for recipe in list_of_recipes:
