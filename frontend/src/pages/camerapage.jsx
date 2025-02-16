@@ -1,15 +1,13 @@
-import React from 'react';
-import CameraApp from '../components/CameraApp/CameraAccess.jsx';
+// src/pages/CameraPage.jsx
+import React from "react";
+import CameraApp from "../components/CameraApp/CameraApp";
 
 function CameraPage() {
   return (
     <div>
-      <h1>Camera Page</h1>
-      <CameraApp /> {/* Render the CameraApp component */}
+      <CameraApp />
     </div>
   );
 }
 
 export default CameraPage;
-
-
