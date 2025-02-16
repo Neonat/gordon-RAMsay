@@ -8,12 +8,12 @@ const NewNavbar = () => {
   const navigate = useNavigate();
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: "#2E8B57" }}>
+    <Navbar expand="lg" style={{ backgroundColor: "#FF9F1C" }}>
       <Container>
         {/* Brand with logo */}
         <Navbar.Brand href="/" style={{ color: "white", fontWeight: "bold", display: "flex", alignItems: "center" }}>
       <img
-        src="frontend/assets/kitchencopiloticon.jpeg"  // Change this to your actual logo path
+        src="frontend/assets/forkicon.jpeg"  // Change this to your actual logo path
         alt="Kitchen Copilot Logo"
         width="40"  // Adjust the size as needed
         height="40"
@@ -24,21 +24,21 @@ const NewNavbar = () => {
         <Navbar.Brand>Kitchen Copilot</Navbar.Brand>
 
         {/* Toggle button for mobile (hamburger menu) */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav">
-          <List size={24} className="text-light" /> {/* Hamburger icon */}
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="custom-toggle">
+          <List size={24} className="text-dark" /> {/* Hamburger icon */}
         </Navbar.Toggle>
 
         {/* Icons on the right */}
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             <Nav.Link href="#">
-              <Bell size={24} className="text-light" /> {/* Notification icon */}
+              <Bell size={24} className="text-dark" /> {/* Notification icon */}
             </Nav.Link>
             <Nav.Link href="#">
-              <Chat size={24} className="text-light" /> {/* Message icon */}
+              <Chat size={24} className="text-dark" /> {/* Message icon */}
             </Nav.Link>
             <NavDropdown
-              title={<List size={24} className="text-light" />}
+              title={<List size={24} className="text-dark" />}
               id="basic-nav-dropdown"
               align="end" // Align dropdown to the right
             >

@@ -1,31 +1,53 @@
-/* Ensure space between icons and text */
-.navbar-nav {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar .nav-link {
-    margin-left: 20px;
-  }
-  
-  /* Custom style for the icons */
-  .text-light {
-    color: white !important;
-  }
-  
-  /* Align dropdown menu to the right */
-  .navbar .dropdown-menu {
-    right: 0;
-    left: auto;
-  }
-  
-  /* Ensure icons are visible on mobile */
-  @media (max-width: 991.98px) {
-    .navbar-nav {
-      flex-direction: row; /* Keep icons in a row on mobile */
-    }
-  
-    .navbar-brand {
-      margin-right: auto; /* Push brand to the left on mobile */
-    }
-  }
+/* Navbar Styling */
+.navbar {
+  background-color: #FF9F1C !important; /* Teal background for the navbar */
+  padding: 10px 20px;
+}
+
+/* Navbar Brand (Logo + Text) */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8B4000 !important; /* Orange text to match the theme */
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  height: 40px; /* Adjust logo size */
+  margin-right: 10px;
+}
+
+/* Navbar Links */
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #FF9F1C !important; /* Orange highlight on hover */
+}
+
+/* Dropdown Styling */
+.navbar-nav .nav-dropdown {
+  background-color: white !important;
+  border-radius: 5px;
+}
+
+/* Mobile Toggle Button (Hamburger) */
+.custom-toggle {
+  border: 2px solid #FF9F1C !important; /* Orange border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 5px 10px; /* Adjust padding */
+  background-color: #FF9F1C !important; /* White background */
+}
+
+.custom-toggle:hover {
+  background-color: #A66E38!important; /* Orange background on hover */
+}
+
+.custom-toggle .text-dark {
+  color: black !important; /* Teal icon */
+}
