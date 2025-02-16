@@ -1,6 +1,7 @@
 langchain==0.3.14
 langchain-google-genai==2.0.8
 langchain-community==0.3.14
+langchain-core==0.3.35
 langgraph==0.2.66
 python-dotenv==1.0.1
 python_dateutil >= 2.5.3
